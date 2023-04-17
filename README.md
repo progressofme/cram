@@ -8,7 +8,7 @@ Download cram.py, open a new file in the same directory as cram.py, use 𝐟𝐫
 
 # How does it work?
 
-Cram uses things on your computer, such as ram, temp files, 15 files from your Downloads, Documents, Photos, and Desktop into a Md5 Hash (We do not store this data).
+Cram uses things on your computer, such as ram, temp files, 15 files from your Downloads and Desktop into a Md5 Hash (We do not store this data).
 
 We then do a bunch more stuff, including Portal Quotes to make sure that this is completely random.
 
