@@ -1,14 +1,14 @@
-# 𝐂𝐑𝐀𝐌
+# 𝐂𝐑𝐀𝐌𝐏𝐘
 
-Welcome to CRAM - Custom Randomness. This project is in beta, or just a test. Not sure yet.
+Welcome to CRAMPY - Custom Randomness. This project is in beta, or just a test. Not sure yet.
 
 # How to make it work
 
-Download cram.py, open a new file in the same directory as cram.py, use 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦 𝐢𝐦𝐩𝐨𝐫𝐭 𝐜𝐫𝐚𝐦, and then use 𝐜𝐫𝐚𝐦(𝟏,𝟏𝟎𝟎) to generate a random number 1-100.
+Download crampy.py, open a new file in the same directory as crampy.py, use 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦𝐩𝐲 𝐢𝐦𝐩𝐨𝐫𝐭 𝐜𝐫𝐚𝐦, and then use 𝐜𝐫𝐚𝐦(𝟏,𝟏𝟎𝟎) to generate a random number 1-100.
 
 # How does it work?
 
-Cram uses things on your computer, such as ram, temp files, 15 files from your Downloads and Desktop into a Md5 Hash (We do not store this data).
+Crampy uses things on your computer, such as ram, temp files, 15 files from your Downloads and Desktop into a Md5 Hash (We do not store this data).
 
 We then do a bunch more stuff, including Portal Quotes to make sure that this is completely random.
 
