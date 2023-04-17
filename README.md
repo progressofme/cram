@@ -16,6 +16,12 @@ After we gather all the hashes of this, we combine it all into one hash.
 
 Then, we take all the numbers from the hash, and divide it until we have a perfectly random number for you to use.
 
+# Cool Features
+
+If you are running this in a place like replit, it will work just the same.
+
+Crampy is actually faster in generating numbers than secrets and random
+
 # Known bugs
 
 We know that if you put in too large of a number, then it will cause bugs.
