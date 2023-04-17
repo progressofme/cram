@@ -47,10 +47,8 @@ def cram(min, max):
     # Get common folder's hashes
     hdownload = get_md5_hash_of_folder(f'C:\\Users\\{os.getlogin()}\\Downloads')
     hdesktop = get_md5_hash_of_folder(f'C:\\Users\\{os.getlogin()}\\Desktop')
-    hdocuments = get_md5_hash_of_folder(f'C:\\Users\\{os.getlogin()}\\Documents')
-    hpictures = get_md5_hash_of_folder(f'C:\\Users\\{os.getlogin()}\\Pictures')
     # Hash together all common folder's hashes, then hash the user and hostname, then combine the two
-    folders = hdownload+hdesktop+hdocuments+hpictures
+    folders = hdownload+hdesktop
     hfolders = hashlib.sha256(folders.encode()).hexdigest()
     user = husername+hhostname
     hhuser = hashlib.sha512(user.encode()).hexdigest()
@@ -71,11 +69,10 @@ def cram(min, max):
     # What CPU Model does the user have
     cpu_model = platform.processor()
     # Get two things that most likely aren't the same on 2 computers, the temp file (Windows key + Run, type in temp and click enter) and the user's search history (Chrome only)
-    temp = get_md5_hash_of_folder('C:\Windows\Temp')
     searchhistory = get_md5_hash_of_folder(f'C:\\Users\\{os.getlogin()}\\AppData\\Local\\Google\\Chrome\\User Data\\Default')
     # Combine all the hashes, while also using the 'key' variable defined earlier, let's say the key variable's first digit is a 3, then for the intermission inbetween the 2 hashes include p_quote3
     howmanytimes = -1
-    salted_hashalltogether = hashlib.sha256(f'{husername}{getquote(howmanytimes, key, key2)}{hhostname}{getquote(howmanytimes, key, key2)}{username}{getquote(howmanytimes, key, key2)}{hostname}{getquote(howmanytimes, key, key2)}{hdownload}{getquote(howmanytimes, key, key2)}{hdocuments}{getquote(howmanytimes, key, key2)}{hpictures}{getquote(howmanytimes, key, key2)}{hdesktop}{getquote(howmanytimes, key, key2)}{hhuser}{getquote(howmanytimes, key, key2)}{hfolders}{getquote(howmanytimes, key, key2)}{htogether}{getquote(howmanytimes, key, key2)}{key}{getquote(howmanytimes, key, key2)}{today}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{current_hour}{getquote(howmanytimes, key, key2)}{delta}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{cpu_model}{getquote(howmanytimes, key, key2)}{ten_minute_intervals}{getquote(howmanytimes, key, key2)}{minutes_since_midnight}{getquote(howmanytimes, key, key2)}{searchhistory}{getquote(howmanytimes, key, key2)}{temp}{getquote(howmanytimes, key, key2)}{folders}{ten_minute_intervals}'.encode()).hexdigest()
+    salted_hashalltogether = hashlib.sha256(f'{husername}{getquote(howmanytimes, key, key2)}{hhostname}{getquote(howmanytimes, key, key2)}{username}{getquote(howmanytimes, key, key2)}{hostname}{getquote(howmanytimes, key, key2)}{hdownload}{getquote(howmanytimes, key, key2)}{hdesktop}{getquote(howmanytimes, key, key2)}{hhuser}{getquote(howmanytimes, key, key2)}{hfolders}{getquote(howmanytimes, key, key2)}{htogether}{getquote(howmanytimes, key, key2)}{key}{getquote(howmanytimes, key, key2)}{today}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{current_hour}{getquote(howmanytimes, key, key2)}{delta}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{cpu_model}{getquote(howmanytimes, key, key2)}{ten_minute_intervals}{getquote(howmanytimes, key, key2)}{minutes_since_midnight}{getquote(howmanytimes, key, key2)}{searchhistory}{getquote(howmanytimes, key, key2)}{folders}{ten_minute_intervals}'.encode()).hexdigest()
     numbers = ''.join(re.findall(r'\d+', salted_hashalltogether))
     numbers = int(numbers)
     min = int(min)
