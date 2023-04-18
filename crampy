@@ -1,6 +1,6 @@
 import hashlib, os, re, datetime, platform
 
-#version 2.1
+#version 2.2
 def gmd5hof(path):
   sha256_hash = hashlib.sha256()
   file_count = 0
@@ -110,12 +110,13 @@ def cramp(min, max):
     f'{husername}{getquote(howmanytimes, key, key2)}{hhostname}{getquote(howmanytimes, key, key2)}{username}{getquote(howmanytimes, key, key2)}{hostname}{getquote(howmanytimes, key, key2)}{hdownload}{getquote(howmanytimes, key, key2)}{hdesktop}{getquote(howmanytimes, key, key2)}{hhuser}{getquote(howmanytimes, key, key2)}{hfolders}{getquote(howmanytimes, key, key2)}{htogether}{getquote(howmanytimes, key, key2)}{key}{getquote(howmanytimes, key, key2)}{today}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{current_hour}{getquote(howmanytimes, key, key2)}{delta}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{cpu_model}{getquote(howmanytimes, key, key2)}{ten_minute_intervals}{getquote(howmanytimes, key, key2)}{minutes_since_midnight}{getquote(howmanytimes, key, key2)}{searchhistory}{getquote(howmanytimes, key, key2)}{folders}{ten_minute_intervals}'
     .encode()).hexdigest()
   numbers = ''.join(re.findall(r'\d+', salted_hashalltogether))
-  numbers = int(numbers)
+  numbers = str(numbers)
   numbers2 = ''.join(re.findall(r'\d+', hdownload))
   numbers3 = ''.join(re.findall(r'\d+', hdesktop))
-  numbers2 = int(numbers2)
-  numbers3 = int(numbers3)
+  numbers2 = str(numbers2)
+  numbers3 = str(numbers3)
   numbers = numbers + numbers2 + numbers3
+  numbers = int(numbers )
   min = int(min)
   max = int(max)
   if min >= max:
@@ -130,10 +131,12 @@ def cramp(min, max):
       numbers = abs(numbers)
     elif numbers <= 10:
       numbers = numbers * 5.131
-    elif int(tempstr[0]) <= 4:
+    elif int(tempstr[0]) <= 3:
       numbers = numbers / 3
-    elif int(tempstr[0]) >= 5:
-      numbers = numbers / 30
+    elif int(tempstr[0]) >= 7:
+      numbers = numbers / 15
+    elif int(tempstr[0]) in (4, 5, 6):
+      numbers = numbers / 5
   extra = re.findall(r'\d+\.\d+', str(numbers))
   extra = sum_decimal_digits(extra)
   if extra > 75:
