@@ -4,7 +4,7 @@ Welcome to CRAMPY - Custom Randomness. This project is in beta, or just a test. 
 
 # How to make it work
 
-Download crampy.py, open a new file in the same directory as crampy.py, use 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦𝐩𝐲 𝐢𝐦𝐩𝐨𝐫𝐭 𝐜𝐫𝐚𝐦, and then use 𝐜𝐫𝐚𝐦(𝟏,𝟏𝟎𝟎) to generate a random number 1-100.
+Download crampy.py, open a new file in the same directory as crampy.py, use 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦𝐩𝐲 𝐢𝐦𝐩𝐨𝐫𝐭 𝐜𝐫𝐚𝐦𝐩, and then use 𝐜𝐫𝐚𝐦𝐩(𝟏,𝟏𝟎𝟎) to generate a random number 1-100.
 
 # How does it work?
 
@@ -24,4 +24,10 @@ Crampy is actually faster in generating numbers than secrets and random
 
 # Known bugs
 
-We know that if you put in too large of a number, then it will cause bugs.
+cramp(1,2) or similar results in nothing appearing
+
+# Fun Facts
+
+1. This was originally going to be a private key generator, with the same script. Now, I take the numbers from what would have been the private key and other numbers to generate these numbers
+
+More fun facts to come once they become fun again
