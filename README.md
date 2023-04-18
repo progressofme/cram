@@ -8,7 +8,7 @@ Download crampy.py, open a new file in the same directory as crampy.py, use 𝐟
 
 # How does it work?
 
-Crampy uses things on your computer, such as ram, temp files, 15 files from your Downloads and Desktop into a Md5 Hash (We do not store this data).
+Crampy uses things on your computer, such as how much ram you have, temp file hashes, 15 files from your Downloads and Desktop into a Md5 Hash (We do not store this data).
 
 We then do a bunch more stuff, including Portal Quotes to make sure that this is completely random.
 
