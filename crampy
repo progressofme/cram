@@ -1,6 +1,6 @@
 import hashlib, os, re, datetime, platform
 
-#version 2
+#version 2.1
 def gmd5hof(path):
   sha256_hash = hashlib.sha256()
   file_count = 0
@@ -123,12 +123,17 @@ def cramp(min, max):
       'Error: Minimum number cannot be greater than or equal to the maximum number'
     )
     exit(1)
-  midpoint = (min + max) / 2
   while not (min <= numbers <= max):
-    if numbers < midpoint:
-      numbers = (numbers + max) / 940
-    else:
-      numbers = (numbers + min) / 381
+    tempstr = str(numbers)
+    if numbers <= 0 <= min:
+      print(numbers)
+      numbers = abs(numbers)
+    elif numbers <= 10:
+      numbers = numbers * 5.131
+    elif int(tempstr[0]) <= 4:
+      numbers = numbers / 3
+    elif int(tempstr[0]) >= 5:
+      numbers = numbers / 30
   extra = re.findall(r'\d+\.\d+', str(numbers))
   extra = sum_decimal_digits(extra)
   if extra > 75:
