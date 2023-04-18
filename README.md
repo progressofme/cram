@@ -22,7 +22,7 @@ If you are running this in a place like replit, it will work just the same.
 
 Crampy is actually faster in generating numbers than secrets and random
 
-If you don't believe me, run this code: https://replit.com/@progressofme/CrampyTimeTester
+If you don't believe me, run this code: https://replit.com/@progressofme/CrampyTimeTester?v=1
 
 # Known bugs
 
