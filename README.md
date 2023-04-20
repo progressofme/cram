@@ -37,3 +37,7 @@ cramp(1,2) or similar results in nothing appearing
 3, It's easy to install Crampy, as we only use default libraries!
 
 More fun facts to come once they become fun again
+
+# Coming Soon
+
+𝐩𝐢𝐩 𝐢𝐧𝐬𝐭𝐚𝐥𝐥 𝐜𝐫𝐚𝐦𝐩𝐲
