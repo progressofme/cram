@@ -18,7 +18,9 @@ Then, we take all the numbers from the hash, and divide it until we have a perfe
 
 # Cool Features
 
-If you are running this in a place like replit, it will work just the same.
+If you are running this in a place like replit, or codehs, it will work just the same.
+
+Still testing it in new coding places
 
 Crampy is actually faster in generating numbers than secrets and random
 
@@ -35,6 +37,8 @@ cramp(1,2) or similar results in nothing appearing
 2. You can actually use some of the things that we use to make the script externally (𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦𝐩𝐲 𝐢𝐦𝐩𝐨𝐫𝐭 𝐠𝐦𝐝𝟓𝐡𝐨𝐟) and running 𝐠𝐦𝐝𝟓𝐡𝐨𝐟(𝐩𝐚𝐭𝐡) with a actual path will return a folder's md5 hash. You can also use 𝐟𝐫𝐨𝐦 𝐜𝐫𝐚𝐦𝐩𝐲 𝐢𝐦𝐩𝐨𝐫𝐭 𝐬𝐮𝐦_𝐝𝐞𝐜𝐢𝐦𝐚𝐥_𝐝𝐢𝐠𝐢𝐭𝐬 and have a float variable in there, and it will add together all the numbers (12.34 or 1+2+3+4 = a return of 10)
 
 3, It's easy to install Crampy, as we only use default libraries!
+
+4, I coded the private key generator mainly at home, and now I'm coding crampy mainly at school.
 
 More fun facts to come once they become fun again
 
