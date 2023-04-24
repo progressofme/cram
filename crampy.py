@@ -1,5 +1,7 @@
 import hashlib, os, re, datetime, platform
-
+showpopuponimport = 1
+if showpopuponimport == 1:
+  print('Please note that Crampy is still in beta and is not expected to release anytime soon.\n\n')
 #version 2.2
 def gmd5hof(path):
   sha256_hash = hashlib.sha256()
@@ -22,14 +24,10 @@ def gmd5hof(path):
     print('Empty folder:' + path)
 
   return sha256_hash.hexdigest()
-
-
 def sum_decimal_digits(decimal_list):
   return sum(
     int(digit) for number in decimal_list for digit in str(number)
     if digit.isdigit())
-
-
 def getquote(howmanytimes, key, key2):
   key = str(key)
   key2 = str(key2)
@@ -55,9 +53,7 @@ def getquote(howmanytimes, key, key2):
   else:
     howmanytimes += 1
     return hashlib.sha256(p_quote[int(key[howmanytimes])].encode()).hexdigest()
-
-
-def cramp(min, max):
+def cramp(min, max, debugmode=False):
   # Get username of the user who's signed in and the name of the computer
   try:
     username = os.getlogin()
@@ -67,22 +63,32 @@ def cramp(min, max):
   # Hash the user and computer name
   husername = hashlib.sha256(username.encode()).hexdigest()
   hhostname = hashlib.sha256(hostname.encode()).hexdigest()
+  if debugmode == True:
+    print(husername + '<- Encrypted user logged in hash')
   # Get common folder's hashes
   try:
     hdownload = gmd5hof(f'C:\\Users\\{os.getlogin()}\\Downloads')
   except:
     hdownload = 'a69e07b1c51d972f4a97820c4cce4a6d'
+  if debugmode == True:
+    print(hdownload + '<- Encrypted download hash')
   try:
     hdesktop = gmd5hof(f'C:\\Users\\{os.getlogin()}\\Desktop')
   except:
     hdesktop = '616d3fa65055ea0b114bd96cf816c973'
+  if debugmode == True:
+    print(hdesktop + '<- Encrypted desktop hash')
   # Hash together all common folder's hashes, then hash the user and hostname, then combine the two
   folders = hdownload + hdesktop
   hfolders = hashlib.sha256(folders.encode()).hexdigest()
+  if debugmode == True:
+    print(hfolders + '<- Combined Folders')
   user = husername + hhostname
   hhuser = hashlib.sha512(user.encode()).hexdigest()
   together = hhuser + hfolders
   htogether = hashlib.sha224(together.encode()).hexdigest()
+  if debugmode == True:
+    print(htogether + '<- Combined Folder hash and Username into one')
   key2 = ''.join(re.findall(r'\d+', hfolders))
   # Get all numbers from htogether and keep it as a key to use in the future
   key = ''.join(re.findall(r'\d+', htogether))
@@ -92,6 +98,7 @@ def cramp(min, max):
   current_hour = datetime.datetime.now().hour
   now = datetime.datetime.now()
   midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
+  seconds = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
   delta = now - midnight
   minutes_since_midnight = delta.total_seconds() / 60
   ten_minute_intervals = int(minutes_since_midnight / 10)
@@ -106,16 +113,22 @@ def cramp(min, max):
     searchhistory = '45c5e27edf4f458a7c178600d5bb0157'
   # Combine all the hashes, while also using the 'key' variable defined earlier, let's say the key variable's first digit is a 3, then for the intermission inbetween the 2 hashes include p_quote3
   howmanytimes = -1
+  milliseconds = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds() * 1000
   salted_hashalltogether = hashlib.sha256(
-    f'{husername}{getquote(howmanytimes, key, key2)}{hhostname}{getquote(howmanytimes, key, key2)}{username}{getquote(howmanytimes, key, key2)}{hostname}{getquote(howmanytimes, key, key2)}{hdownload}{getquote(howmanytimes, key, key2)}{hdesktop}{getquote(howmanytimes, key, key2)}{hhuser}{getquote(howmanytimes, key, key2)}{hfolders}{getquote(howmanytimes, key, key2)}{htogether}{getquote(howmanytimes, key, key2)}{key}{getquote(howmanytimes, key, key2)}{today}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{current_hour}{getquote(howmanytimes, key, key2)}{delta}{getquote(howmanytimes, key, key2)}{now}{getquote(howmanytimes, key, key2)}{cpu_model}{getquote(howmanytimes, key, key2)}{ten_minute_intervals}{getquote(howmanytimes, key, key2)}{minutes_since_midnight}{getquote(howmanytimes, key, key2)}{searchhistory}{getquote(howmanytimes, key, key2)}{folders}{ten_minute_intervals}'
-    .encode()).hexdigest()
+    f'{husername}{milliseconds}{getquote(howmanytimes, key, key2)}{hhostname}{getquote(howmanytimes, key, key2)}{username}{getquote(howmanytimes, key, key2)}{seconds}{hostname}{getquote(howmanytimes, key, key2)}{hdownload}{getquote(howmanytimes, key, key2)}{hdesktop}{getquote(howmanytimes, key, key2)}{hhuser}{getquote(howmanytimes, key, key2)}{seconds}{hfolders}{getquote(howmanytimes, key, key2)}{htogether}{milliseconds}{getquote(howmanytimes, key, key2)}{key}{getquote(howmanytimes, key, key2)}{today}{getquote(howmanytimes, key, key2)}{seconds}{now}{getquote(howmanytimes, key, key2)}{current_hour}{getquote(howmanytimes, key, key2)}{delta}{getquote(howmanytimes, key, key2)}{now}{milliseconds}{getquote(howmanytimes, key, key2)}{cpu_model}{getquote(howmanytimes, key, key2)}{ten_minute_intervals}{getquote(howmanytimes, key, key2)}{minutes_since_midnight}{milliseconds}{getquote(howmanytimes, key, key2)}{searchhistory}{getquote(howmanytimes, key, key2)}{folders}{ten_minute_intervals}'.encode()).hexdigest()
+  if debugmode == True:
+    print(salted_hashalltogether + '<- Master hash')
   numbers = ''.join(re.findall(r'\d+', salted_hashalltogether))
   numbers = str(numbers)
   numbers2 = ''.join(re.findall(r'\d+', hdownload))
   numbers3 = ''.join(re.findall(r'\d+', hdesktop))
+  numbers4 = ''.join(re.findall(r'\d+', searchhistory))
+  numbers4 = str(numbers4)
   numbers2 = str(numbers2)
   numbers3 = str(numbers3)
-  numbers = numbers + numbers2 + numbers3
+  numbers = numbers + numbers2 + numbers3 + numbers4
+  if debugmode == True:
+    print(numbers + '<- Master Number')
   numbers = int(numbers )
   min = int(min)
   max = int(max)
@@ -126,22 +139,74 @@ def cramp(min, max):
     exit(1)
   while not (min <= numbers <= max):
     tempstr = str(numbers)
-    if numbers <= 0 <= min:
+    if debugmode == True:
       print(numbers)
-      numbers = abs(numbers)
-    elif numbers <= 10:
-      numbers = numbers * 5.131
-    elif int(tempstr[0]) <= 3:
-      numbers = numbers / 3
-    elif int(tempstr[0]) >= 7:
-      numbers = numbers / 15
-    elif int(tempstr[0]) in (4, 5, 6):
-      numbers = numbers / 5
+    numbers = int(numbers)
+    numbers = float(numbers)
+    if numbers <= 0 <= min:
+        print(numbers)
+        numbers = abs(numbers)
+        if debugmode == True:
+          print('Removed negitive')
+    elif numbers <= 3:
+        numbers = numbers * 5.131
+        if debugmode == True:
+          print('*5.131')
+    elif int(tempstr[0]) == 1:
+        numbers = numbers / 15.151
+        if debugmode == True:
+          print('/15.151')
+    elif int(tempstr[0]) == 2:
+        numbers = numbers / 13
+        if debugmode == True:
+          print('/13')
+    elif int(tempstr[0]) == 3:
+        numbers = numbers / 5
+        if debugmode == True:
+          print('/5')
+    elif int(tempstr[0]) == 4:
+      numbers = numbers / 7.1
+      if debugmode == True:
+        print('/7.1')
+    elif int(tempstr[0]) == 5:
+      numbers = numbers / 2.1154
+      if debugmode == True:
+        print('/2.1154')
+    elif int(tempstr[0]) == 6:
+      numbers = numbers / 9.1
+      if debugmode == True:
+        print('/9.1')
+    elif int(tempstr[0]) == 7:
+      numbers = numbers / 12.113
+      if debugmode == True:
+        print('/12.113')
+    elif int(tempstr[0]) == 8:
+      numbers = numbers / 6
+      if debugmode == True:
+        print('/6')
+    elif int(tempstr[0]) == 9:
+      numbers = numbers / 1.5131
+      if debugmode == True:
+        print('/1.5131')
+    elif int(tempstr[0]) == 0:
+        numbers = numbers * 7.39201
+        if debugmode == True:
+          print('*7.39201')
   extra = re.findall(r'\d+\.\d+', str(numbers))
   extra = sum_decimal_digits(extra)
-  if extra > 75:
+  if extra > 65:
     numbers += 1
   else:
     pass
   numbers = int(numbers)
   return numbers
+if __name__ == '__main__':
+  import time
+  print("Hey, We noticed that you ran this script directly. It's no worries, we all make mistakes. Here's what you do:")
+  print("You open your python program, and have a line of code that imports crampy, and more specifically cramp ('from crampy import cramp')")
+  print("Or you can just do 'import crampy' and still use cramp")
+  print("Then, afterwards, you can set any variable to a random number using something along the lines of 'a=cramp(1,100)' to get a number 1-100.")
+  print("Alternitavely, if you imported crampy and not from crampy import cramp then you'll have to do 'a=crampy.cramp(1,100)' to do the same thing.")
+  print('Happy Coding')
+  time.sleep(cramp(10,100))
+  exit()
